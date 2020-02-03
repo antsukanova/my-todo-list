@@ -1,0 +1,28 @@
+.Buttons input {
+    margin-right: 1rem;
+}
+
+.Buttons button,
+.Buttons input {
+    border: 1px solid white;
+    background: #282c34;
+    color: white;
+    padding: .3rem;
+    font-size: 1.1rem;
+}
+
+.Buttons input:focus,
+.Buttons input:hover,
+.Buttons button:hover {
+    box-shadow: 1px 2px 4px white;;
+}
+
+.Buttons button {
+    cursor: pointer;
+}
+
+.Alert {
+    color: red;
+    font-size: 1rem;
+    margin-top: .5rem;
+}

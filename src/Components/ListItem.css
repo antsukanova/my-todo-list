@@ -1,0 +1,41 @@
+
+.List-item {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: 1.5rem;
+}
+
+.List-item > button {
+    margin-left: 1rem;
+    cursor: pointer;
+    border: 1px solid white;
+    background: none;
+    color: white;
+    height: 20px;
+    transition: all .2s ease-in;
+}
+
+.List-item .check:hover,
+.crossed .check {
+    background: darkgreen;
+}
+
+.List-item .delete:hover {
+    background: darkred;
+}
+
+.crossed {
+    position: relative;
+}
+
+.crossed:after {
+    position: absolute;
+    content: '';
+    top: 50%;
+    left: -4px;
+    width: calc(100% - 72px);
+    height: 3px;
+    background-color: darkred;
+}
