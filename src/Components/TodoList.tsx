@@ -10,7 +10,12 @@ class TodoList extends React.Component {
 
     addItem = (item: String) => {
         this.setState(() => {
-            const newKey = this.state.list[this.state.list.length - 1].id + 1;
+            let newKey;
+            if (this.state.list.length > 0) {
+                newKey = this.state.list[this.state.list.length - 1].id + 1;
+            } else {
+                newKey = 0
+            }
             const list = [...this.state.list, {id: newKey, value: item}];
             return {
                 list
