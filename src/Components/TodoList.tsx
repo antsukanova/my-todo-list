@@ -1,6 +1,7 @@
 import React from 'react'
 import ListItem from './ListItem';
 import AddItem from './AddItem';
+import FilterItem from './FilterBar';
 import './TodoList.css';
 
 class TodoList extends React.Component {
@@ -34,6 +35,7 @@ class TodoList extends React.Component {
 
     render() {
         return (<div className="App-list">
+            <FilterItem/>
             <ul className="List">
                 {this.state.list.map(el => <ListItem key={el.id}
                                                      className={this.state.className}
