@@ -1,23 +1,19 @@
 import React from 'react'
-import {ListDataModel} from './dataModel'
+import {FilterDataModel, ListDataModel} from './dataModel'
 import List from './List';
 import AddItem from './AddItem';
-import FilterItem from './FilterBar';
+import FilterBar from './FilterBar';
 import './TodoList.css';
 
 type State = {
-    list: Array<ListDataModel>, filterName: Array<string>
+    list: Array<ListDataModel>, filterName: Array<FilterDataModel>
 }
 
 class TodoList extends React.Component {
     state: State = {
-        list: [{id: 1, value: 'aaaaa'}, {id: 2, value: 'sssss'}], //[]
-        filterName: ['desc', 'asc']
+        list: [{id: 1, value: 'aaaaa'}, {id: 2, value: 'sssss'}], //[] ???
+        filterName: [{value: 'desc', icon: '⇣'}, {value: 'asc', icon: '⇡'}]
     };
-
-    // listIsEmpty = (list: Array<ListDataModel> | []) => {
-    //     return this.state.list.length > 0
-    // };
 
     addItem = (item: String) => {
         this.setState(() => {
@@ -35,10 +31,15 @@ class TodoList extends React.Component {
     FilterItems = (order: string) => {
         //if nothing => then desc
         if (order === 'desc') {
-            this.state.list.sort((a, b) => b.id - a.id);
-            console.log(this.state.list)
+            this.setState(state => {
+                const sortedArray = this.state.list.sort((a, b) => b.id - a.id);
+                return {sortedArray}
+            })
         } else if (order === 'asc') {
-            this.state.list.sort((a, b) => a.id - b.id);
+            this.setState(state => {
+                const sortedArray = this.state.list.sort((a, b) => a.id - b.id);
+                return {sortedArray}
+            })
         }
     };
 
@@ -56,9 +57,10 @@ class TodoList extends React.Component {
 
         return (<div className="App-list">
             <div className="FilterButtons">
-                {filterName.map(el => <FilterItem key={el}
-                                                  name={el}
-                                                  handleFilter={() => this.FilterItems(el)}
+                {filterName.map(el => <FilterBar key={el.value}
+                                                 name={el.value}
+                                                 icon={el.icon}
+                                                 handleFilter={() => this.FilterItems(el.value)}
                 />)}
             </div>
             <List list={list} deleteItem={this.deleteItem}/>
