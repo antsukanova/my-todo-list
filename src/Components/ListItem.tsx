@@ -23,7 +23,8 @@ class ListItem extends React.Component<MyProps, MyState> {
     };
 
     render() {
-        return (<li className={`${this.props.className} ${this.state.done ? 'crossed' : ''}`}>{this.props.value}
+        return (<li className={`${this.props.className} ${this.state.done ? 'crossed' : ''}`}>
+            <p className="ListItemText">{this.props.value}</p>
             <button className="check" onClick={this.handleClick}>✔</button>
             {/* eslint-disable-next-line jsx-a11y/accessible-emoji */}
             <button className="delete" onClick={this.props.handleDelete}>❌</button>
