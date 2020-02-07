@@ -3,32 +3,29 @@ import './FilterBar.css';
 
 interface IFilterProps {
     name: string,
-    handleFilter: (val: string) => void,
-    icon: string
+    icon: string,
+    handleFilter: (val: string) => void
 }
 
-class FilterBar extends React.Component<IFilterProps> {
-    readonly defaultFilterName: string = 'asc';
-    handleChange = (e: any) => {
-        this.props.handleFilter(e.target.value.toString());
-    };
+const FilterBar: React.FC<IFilterProps> = ({name, icon, handleFilter}) => {
+    const defaultFilterName = 'asc';
 
-    render() {
-        const {name, icon} = this.props;
-
-        return (<>
-            <input className='FilterInput'
-                   value={name}
-                   type="radio"
-                   id={name}
-                   name="todo-list"
-                   onChange={this.handleChange}
-                   defaultChecked={name === this.defaultFilterName}
-            />
-            <label className='FilterLabel'
-                   htmlFor={name}>{icon}</label>
-        </>);
+    function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+        handleFilter(e.target.value.toString());
     }
-}
+
+    return (<>
+        <input className='FilterInput'
+               value={name}
+               type="radio"
+               id={name}
+               name="todo-list"
+               onChange={handleChange}
+               defaultChecked={name === defaultFilterName}
+        />
+        <label className='FilterLabel'
+               htmlFor={name}>{icon}</label>
+    </>);
+};
 
 export default FilterBar;

@@ -1,45 +1,37 @@
-import React from 'react'
+import React, {useState} from 'react'
 import './AddItem.css';
 
 interface IAddProps {
     onSubmit: (item: string) => void
 }
 
-class AddItem extends React.Component<IAddProps> {
-    state = {
-        input: '', error: null
+const AddItem: React.FC<IAddProps> = ({onSubmit}) => {
+
+    const [input, setInput] = useState('');
+    const [error, setError] = useState(false);
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setInput(e.target.value);
     };
 
-    handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        this.setState({
-            input: e.target.value
-        });
-    };
-
-    onSubmit = (e: React.FormEvent<EventTarget>) => {
+    const onSubmitItem = (e: React.FormEvent<EventTarget>) => {
         e.preventDefault();
-        if (this.state.input) {
-            this.props.onSubmit(this.state.input);
-
-            this.setState({
-                input: '', error: null
-            });
+        if (input) {
+            onSubmit(input);
+            setInput('');
+            setError(false)
         } else {
-            this.setState({
-                error: true
-            });
+            setError(true)
         }
     };
 
-    render() {
-        return (<div className="Buttons">
-            <input type='text' placeholder='Type new todo...' value={this.state.input} onChange={this.handleChange}/>
-            <button onClick={this.onSubmit}>Add</button>
-            {this.state.error && <div className='Alert'>
-                Set name for todo item
-            </div>}
-        </div>)
-    }
-}
+    return (<div className="Buttons">
+        <input type='text' placeholder='Type new todo...' value={input} onChange={handleChange}/>
+        <button onClick={onSubmitItem}>Add</button>
+        {error && <div className='Alert'>
+            Set name for todo item
+        </div>}
+    </div>)
+};
 
 export default AddItem;
