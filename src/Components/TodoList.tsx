@@ -18,8 +18,12 @@ class TodoList extends React.Component {
     addItem = (item: String) => {
         this.setState(() => {
             let newKey = 0;
+            let firstELem = this.state.list[0].id;
+            let lastElem = this.state.list[this.state.list.length - 1].id;
+
             if (this.state.list.length > 0) {
-                newKey = this.state.list[this.state.list.length - 1].id + 1;
+                newKey = lastElem > firstELem ? lastElem + 1 : firstELem + 1;
+                console.log(newKey)
             }
             const list = [...this.state.list, {id: newKey, value: item}];
             return {
@@ -29,15 +33,16 @@ class TodoList extends React.Component {
     };
 
     FilterItems = (order: string) => {
-        //if nothing => then desc
         if (order === 'desc') {
             this.setState(state => {
                 const sortedArray = this.state.list.sort((a, b) => b.id - a.id);
+                console.log(sortedArray, 1);
                 return {sortedArray}
             })
         } else if (order === 'asc') {
             this.setState(state => {
                 const sortedArray = this.state.list.sort((a, b) => a.id - b.id);
+                console.log(sortedArray, 2);
                 return {sortedArray}
             })
         }
