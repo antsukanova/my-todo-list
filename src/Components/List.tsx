@@ -8,21 +8,16 @@ type Props = {
     deleteItem: (id: number) => void
 }
 
-class List extends React.Component<Props> {
-    state = {
-        className: 'List-item'
-    };
+const List: React.FC<Props> = ({list, deleteItem}) => {
+    const className = 'List-item';
 
-    render() {
-        const {list} = this.props;
-        return (<ul className="List">
-                {list.map((el: any) => <ListItem key={el.id}
-                                                 className={this.state.className}
-                                                 value={el.value}
-                                                 handleDelete={() => this.props.deleteItem(el.id as number)}
-                />)}
-            </ul>);
-    }
-}
+    return (<ul className="List">
+        {list.map((el: any) => <ListItem key={el.id}
+                                         className={className}
+                                         value={el.value}
+                                         handleDelete={() => deleteItem(el.id as number)}
+        />)}
+    </ul>);
+};
 
 export default List;
