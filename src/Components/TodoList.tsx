@@ -17,8 +17,6 @@ const TodoList: React.FC = () => {
         if (list.length) {
             firstELem = list[0].id;
             lastElem = list[list.length - 1].id;
-        }
-        if (list.length > 0) {
             newKey = lastElem > firstELem ? lastElem + 1 : firstELem + 1;
         }
         setList([...list, {id: newKey, value: item}]);
