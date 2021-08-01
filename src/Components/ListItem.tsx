@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {FC, useState} from 'react'
 import './ListItem.css';
 
 interface MyProps {
@@ -11,24 +11,22 @@ interface MyState {
     done: boolean
 }
 
-class ListItem extends React.Component<MyProps, MyState> {
-    state: MyState = {
+const ListItem: FC<MyProps> = ({className, value, handleDelete}) => {
+    const [state, setState] = useState<MyState>({
         done: false
+    });
+
+    const handleClick = () => {
+        setState({
+            ...state,
+            done: !state.done
+        });
     };
 
-    handleClick = () => {
-        this.setState(prevState => ({
-            done: !prevState.done
-        }));
-    };
-
-    render() {
-        return (<li className={`${this.props.className} ${this.state.done ? 'crossed' : ''}`}>{this.props.value}
-            <button className="check" onClick={this.handleClick}>✔</button>
-            {/* eslint-disable-next-line jsx-a11y/accessible-emoji */}
-            <button className="delete" onClick={this.props.handleDelete}>❌</button>
+        return (<li className={`${className} ${state.done ? 'crossed' : ''}`}>{value}
+            <button className="check" onClick={handleClick}>✔</button>
+            <button className="delete" onClick={handleDelete}>❌</button>
         </li>);
-    }
 }
 
 export default ListItem;
