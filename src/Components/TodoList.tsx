@@ -5,7 +5,7 @@ import './TodoList.css';
 
 const TodoList = () => {
     const [state, setState] = useState({
-        list: [{id: 1, value: 'aaaaa'}, {id: 2, value: 'sssss'}], className: 'List-item'
+        list: [{id: 1, value: 'value'}, {id: 2, value: 'value'}], className: 'List-item'
     });
 
     const addItem = (item: string) => {
