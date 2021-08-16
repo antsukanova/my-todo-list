@@ -1,4 +1,4 @@
-import React, {FC, useState} from 'react'
+import React, {FC, useState, useEffect} from 'react'
 import './ListItem.css';
 
 interface MyProps {
@@ -9,12 +9,21 @@ interface MyProps {
 
 interface MyState {
     done: boolean
+    countSecrets: number
 }
 
 const ListItem: FC<MyProps> = ({className, value, handleDelete}) => {
     const [state, setState] = useState<MyState>({
-        done: false
+        done: false,
+        countSecrets: 0
     });
+
+    // useEffect(() => {
+    //     if (state.done) {
+    //         setState(s => ({...s, countSecrets: s.countSecrets + 1}));
+    //     }
+    //     console.log('rerender');
+    // }, [state]);
 
     const handleClick = () => {
         setState({
