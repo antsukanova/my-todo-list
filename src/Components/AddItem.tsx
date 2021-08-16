@@ -33,7 +33,7 @@ const AddItem: FC<IAddProps> = ({onSubmit}) => {
     };
 
         return (<div className="Buttons">
-            <input type='text' placeholder='Type new todo...' value={state.input} onChange={handleChange}/>
+            <input type='text' placeholder='Type new todo...' value={state.input} onChange={(e) => handleChange(e)}/>
             <button onClick={onClick}>Add</button>
             {state.error && <div className='Alert'>
                 Set name for todo item
