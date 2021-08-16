@@ -1,6 +1,8 @@
 import React, {FC, useState} from 'react'
 import './AddItem.css';
 
+
+//interface IAddProps extends React.HTMLProps<HTMLInputElement> {
 interface IAddProps {
     onSubmit: (item: string) => void
 }
