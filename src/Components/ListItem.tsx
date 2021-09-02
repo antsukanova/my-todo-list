@@ -18,6 +18,8 @@ const ListItem: FC<MyProps> = ({className, value, handleDelete}) => {
         countSecrets: 0
     });
 
+    const listDoneClassName = state.done ? 'crossed' : '';
+
     // useEffect(() => {
     //     if (state.done) {
     //         setState(s => ({...s, countSecrets: s.countSecrets + 1}));
@@ -32,7 +34,7 @@ const ListItem: FC<MyProps> = ({className, value, handleDelete}) => {
         });
     };
 
-        return (<li className={`${className} ${state.done ? 'crossed' : ''}`}>{value}
+        return (<li className={`${className} ${listDoneClassName}`}>{value}
             <button className="check" onClick={handleClick}>✔</button>
             <button className="delete" onClick={handleDelete}>❌</button>
         </li>);

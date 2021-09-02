@@ -24,7 +24,7 @@ const TodoList = () => {
 
     return (<div className="App-list">
         <ul className="List">
-            {state.list.map(el => <ListItem key={el.id}
+            {state.list.map((el, index) => <ListItem key={index}
                                             className={state.className}
                                             value={el.value}
                                             handleDelete={() => deleteItem(el.id)}
