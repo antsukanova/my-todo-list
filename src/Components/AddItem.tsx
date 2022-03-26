@@ -1,46 +1,48 @@
-import React, {FC, useState} from 'react'
-import './AddItem.css';
-
+import React, { FC, useState } from "react";
+import "./AddItem.css";
 
 //interface IAddProps extends React.HTMLProps<HTMLInputElement> {
 interface IAddProps {
-    onSubmit: (item: string) => void
+  onSubmit: (item: string) => void;
 }
 
-const AddItem: FC<IAddProps> = ({onSubmit}) => {
-    const [state, setState] = useState({
-        input: '', error: null
-    });
+const AddItem: FC<IAddProps> = ({ onSubmit }) => {
+  const [state, setState] = useState({
+    input: "",
+    error: null,
+  });
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setState({...state,
-            input: e.target.value
-        });
-    };
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setState({ ...state, input: e.target.value });
+  };
 
-    const onClick = (e: React.FormEvent<EventTarget>) => {
-        e.preventDefault();
-        if (state.input) {
-            onSubmit(state.input);
+  const onClick = (e: React.FormEvent<EventTarget>) => {
+    e.preventDefault();
+    if (state.input) {
+      onSubmit(state.input);
 
-            setState({
-                input: '', error: null
-            });
-        } else {
-            // @ts-ignore
-            setState({...state,
-                error: true
-            });
-        }
-    };
+      setState({
+        input: "",
+        error: null,
+      });
+    } else {
+      // @ts-ignore
+      setState({ ...state, error: true });
+    }
+  };
 
-        return (<div className="Buttons">
-            <input type='text' placeholder='Type new todo...' value={state.input} onChange={(e) => handleChange(e)}/>
-            <button onClick={onClick}>Add</button>
-            {state.error && <div className='Alert'>
-                Set name for todo item
-            </div>}
-        </div>);
-}
+  return (
+    <div className="Buttons">
+      <input
+        type="text"
+        placeholder="Type new todo..."
+        value={state.input}
+        onChange={(e) => handleChange(e)}
+      />
+      <button onClick={onClick}>Add</button>
+      {state.error && <div className="Alert">Set name for todo item</div>}
+    </div>
+  );
+};
 
 export default AddItem;
