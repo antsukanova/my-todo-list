@@ -15,28 +15,32 @@ interface MyState {
 const ListItem: FC<MyProps> = ({ className, value, handleDelete }) => {
   const [state, setState] = useState<MyState>({
     done: false,
-    countSecrets: 0,
+    countSecrets: 0
   });
 
+  // 2
   const listDoneClassName = state.done ? "crossed" : "";
 
   useEffect(() => {
     if (state.done) {
       setState((s) => ({ ...s, countSecrets: s.countSecrets + 1 }));
     }
-    console.error("Re-render");
-  }, [state.done]);
+
+    // 1
+    console.error("useEffect call");
+  }, [state]);
 
   const handleClick = () => {
     setState({
       ...state,
-      done: !state.done,
+      done: !state.done
     });
   };
 
   return (
     <li className={`${className} ${listDoneClassName}`}>
       {value}
+      {/* 3 */}
       <button className="check" onClick={handleClick}>
         ✔
       </button>

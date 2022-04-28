@@ -1,15 +1,17 @@
 import React, { FC, useState } from "react";
 import "./AddItem.css";
 
+// 5
 //interface IAddProps extends React.HTMLProps<HTMLInputElement> {
 interface IAddProps {
   onSubmit: (item: string) => void;
 }
 
 const AddItem: FC<IAddProps> = ({ onSubmit }) => {
+  // 4
   const [state, setState] = useState({
     input: "",
-    error: null,
+    error: null
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -23,9 +25,10 @@ const AddItem: FC<IAddProps> = ({ onSubmit }) => {
 
       setState({
         input: "",
-        error: null,
+        error: null
       });
     } else {
+      // 3
       // @ts-ignore
       setState({ ...state, error: true });
     }
@@ -37,10 +40,16 @@ const AddItem: FC<IAddProps> = ({ onSubmit }) => {
         type="text"
         placeholder="Type new todo..."
         value={state.input}
+        // 2
         onChange={(e) => handleChange(e)}
       />
-      <button onClick={onClick}>Add</button>
-      {state.error && <div className="Alert">Set name for todo item</div>}
+      {/* 1 */}
+      <div onClick={onClick} className="Button">
+        Add
+      </div>
+      {state.error && (
+        <div className="Alert">Type a name for new todo item</div>
+      )}
     </div>
   );
 };
