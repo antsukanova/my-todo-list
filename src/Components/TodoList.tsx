@@ -4,12 +4,13 @@ import AddItem from "./AddItem";
 import "./TodoList.css";
 
 const TodoList = () => {
+  // 1
   const [state, setState] = useState({
     list: [
       { id: 1, value: "value" },
-      { id: 2, value: "value" },
+      { id: 2, value: "value" }
     ],
-    className: "List-item",
+    className: "List-item"
   });
 
   const addItem = (item: string) => {
@@ -28,7 +29,9 @@ const TodoList = () => {
 
   return (
     <div className="App-list">
+      {/* 4 */}
       <ul className="List">
+        {/* 2, 3 */}
         {state.list.map((el, index) => (
           <ListItem
             key={index}
